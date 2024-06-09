@@ -1,0 +1,31 @@
+#include<main.h>
+void Timer_init();
+sbit LED1 = P1^1; 
+unsigned char dem=0;
+int main()
+	{
+			EA  = 1;       
+			ET0 = 1;       
+			Timer_init();
+		while(1)
+			{
+				if(dem==10)
+				{
+				LED1 = ~LED1;  		
+				dem=0;
+					}
+				}
+	}
+void Timer_init()
+{
+	TMOD = 0x01;	
+	TH0 = 0x4B;		
+	TL0 = 0xFD;      
+	TR0 = 1;  	 
+}
+void Timer0_ISR() interrupt 
+{
+	dem=dem+1;				
+	TH0 = 0x4B;      
+	TL0 = 0xFD;      
+}

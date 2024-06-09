@@ -1,0 +1,44 @@
+#include<REGX51.H>
+#define B1 P2_0
+#define B2 P2_1
+#define B3 P2_2
+#define L1 P0_0
+#define L2 P0_1
+#define L3 P0_2
+
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for (i = 0; i < time; i++)
+        for (j = 0; j < 120; j++);
+}
+void main() {
+    // Cau hinh cac chan dau vao cho nut bam
+    B1 = 1; // B1 la chan dau vao
+    B2 = 1; // B2 la chan dau vao
+    B3 = 1; // B3 la chan dau vao
+
+    // Cau hinh cac chan dau ra cho LED
+    L1 = 0; // L1 la chan dau ra
+    L2 = 0; // L2 la chan dau ra
+    L3 = 0; // L3 la chan dau ra
+
+    while (1) {
+        // Kiem tra trang thai nut B1
+        if (B1 == 0) {
+            L1 = ~L1; // Dao trang thai cua LED L1
+            delay(1000); // Tao mot doan thoi gian de tranh nhieu lan nhap lien tiep
+        }
+
+        // Kiem tra trang thai nut B2
+        if (B2 == 0) {
+            L2 = ~L2; // Dao trang thai cua LED L2
+            delay(1000); // Tao mot doan thoi gian de tranh nhieu lan nhap lien tiep
+        }
+
+        // Kiem tra trang thai nut B3
+        if (B3 == 0) {
+            L3 = ~L3; // Dao trang thai cua LED L3
+            delay(1000); // Tao mot doan thoi gian de tranh nhieu lan nhap lien tiep
+        }
+    }
+}

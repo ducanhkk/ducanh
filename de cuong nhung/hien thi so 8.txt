@@ -1,0 +1,16 @@
+#include<REGX51.H>
+#define LED_PORT P3
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for (i = 0; i < time; i++)
+        for (j = 0; j < 120; j++);
+}
+
+void main() {
+    P3 = 0xFF;  // Cài dat P3 là dau ra
+    while (1) {
+        P3 = 0x80;  
+        delay(1000);
+ 
+    }
+}

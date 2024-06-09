@@ -1,0 +1,45 @@
+#include<regx52.h>
+void Uart_Init()
+{
+	SM0 = 0 ;SM1 = 1;//CHON UART MODE 1
+	TMOD = 0x20;//TIMER1 HOAT DONG O CHE DO 8 BIT
+	TH1 = 0xFD;//TOC DO BAUD 9600
+	TR1 =1;//TIME1 BAT DAU CHAY
+	TI = 1;//SAN SANG GUI DU LIEU
+	REN = 1;//CHO PHEP NHAN DU LIEU
+}
+
+void Uart_Write(char c)
+{
+	while(TI == 0);
+	TI = 0;
+	SBUF = c;
+}
+void Uart_Write_Text(char * str)
+{
+	unsigned char i = 0;
+	while(str[i]!=0)
+	{
+		Uart_Write(str[i]);
+		i++;
+	}
+}
+char Uart_Data_Ready()
+{
+	return RI;
+}
+char Uart_Read()
+{
+	RI=0;
+	return SBUF;
+}
+void main()
+{
+	char i;
+	Uart_Init();
+	Uart_Write_Text("PROTEUS");
+	while(1)
+	{
+		
+	}
+}	

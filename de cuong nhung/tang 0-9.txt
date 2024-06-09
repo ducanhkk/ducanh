@@ -1,0 +1,19 @@
+#include <REGX51.H>
+#define LED_PORT P3
+unsigned char led7seg[10] = {0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for (i = 0; i < time; i++)
+        for (j = 0; j < 120; j++);
+}
+void main() {
+    P3 = 0xFF; // Cài dat P3 là dau ra
+    while (1) {
+        unsigned char i;
+        for (i = 0; i <= 9; i++) {
+            P3 = led7seg[i]; // Hien thi so i trên LED 7 doan
+            delay(800);       // Thoi gian tre 800ms
+        }
+    }
+}

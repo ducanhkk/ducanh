@@ -1,0 +1,18 @@
+#include <REGX52.H>
+#define led1 P0
+char so[]={0xfe,0xfc,0xf8,0xf0,0xe0,0xc0,0x80,0x00};
+int i;
+void delay(int t){
+	int x,y;
+	for (x=0;x<t;x++){
+		for (y=0;y<123;y++);
+	}
+}
+void main(){
+	while(1){
+		for (i=0;i<8;i++){
+			led1 = so[i];
+			delay(500);}
+		  led1=0xff;
+			delay(500);
+}				
